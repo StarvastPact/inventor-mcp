@@ -8,7 +8,8 @@
 # 如果系统 Python 里已经 `pip install inventor-mcp-server pywin32`，
 # 可以把 args 换成 ['-m', 'inventor_mcp_server.server']。
 #
-# 仓库克隆到其它目录后请运行 install.ps1 —— 它会重写下面的 args 绝对路径与 command。
+# <REPO_DIR> 是占位符。克隆到任意目录后运行 install.ps1 ——
+# 它会把 command 和启动器路径重写成这台机器上的绝对路径。
 - insert:
     - id: inventor-mcp
       name: '@deepseek-ai/dsh-mcp-client'
@@ -18,7 +19,7 @@
         command: 'python'
         args:
           - '-u'
-          - 'D:\SHU Files\dsh-repo\inventor-mcp\run_inventor_mcp.py'
+          - '<REPO_DIR>/run_inventor_mcp.py'
         env:
           PYTHONIOENCODING: 'utf-8'
           PYTHONUNBUFFERED: '1'
