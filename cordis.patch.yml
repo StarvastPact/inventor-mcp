@@ -1,24 +1,26 @@
+# inventor-mcp —— 把 Autodesk Inventor 接进 DSH 的 MCP 连接配置（stdio 传输）
+#
+# 启动器 run_inventor_mcp.py 自行推导仓库内路径，离线可用：
+#   runtime/pylibs/          Python 依赖（mcp / pywin32 等）
+#   runtime/ext/<server>/    inventor_mcp_server 源码
+#   runtime/logs/server.log  启动与异常日志
+#
+# 如果系统 Python 里已经 `pip install inventor-mcp-server pywin32`，
+# 可以把 args 换成 ['-m', 'inventor_mcp_server.server']。
+#
+# 仓库克隆到其它目录后请运行 install.ps1 —— 它会重写下面的 args 绝对路径与 command。
 - insert:
     - id: inventor-mcp
       name: '@deepseek-ai/dsh-mcp-client'
       config:
         serverName: inventor
         transport: stdio
-        # 默认：用已 pip 安装的 inventor-mcp-server（Python 3.12+，Windows）
-        #   pip install inventor-mcp-server pywin32
-        # install.ps1 会把下面的 python 换成检测到的绝对路径。
-        # 如果 Python 已在 PATH，也可以保留 'python'。
         command: 'python'
         args:
-          - '-m'
-          - 'inventor_mcp_server.server'
+          - '-u'
+          - 'D:\SHU Files\dsh-repo\inventor-mcp\run_inventor_mcp.py'
         env:
           PYTHONIOENCODING: 'utf-8'
           PYTHONUNBUFFERED: '1'
           INVENTOR_MCP_PRELOAD: ''
         failOnStartupError: true
-
-        # --- 离线/免 pip 的自包含方式（把上面 args 换成本地启动器）---
-        # args:
-        #   - '-u'
-        #   - '__INSTALL_DIR__/run_inventor_mcp.py'
