@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Inventor 建模桥接",
+    "description": "通过 inventor-mcp-server 连接 Autodesk Inventor，让智能体直接建零件、钣金与装配。",
+    "detail": "docs/DETAIL.md"
+  }
+}
