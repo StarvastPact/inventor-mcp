@@ -1,0 +1,28 @@
+# awesome-dsh-plugin catalog entry — copy to
+#   awesome-dsh-plugin/data/plugins/StarvastPact__inventor-mcp.yml
+# in your fork of https://github.com/awesome-dsh-plugin/awesome-dsh-plugin
+#
+# Field rules (as published by the catalog project):
+#   url          must match the repository address exactly (not a fork/mirror)
+#   name         "<owner>/<repo>", shown as the link text
+#   category     one of the 23 valid values; this plugin is "tools"
+#   description.en  required, plain statement of what it does, ends with a period
+#   description.zh  optional
+#   icon         optional, must be an https URL served by GitHub raw
+
+url: https://github.com/StarvastPact/inventor-mcp
+name: StarvastPact/inventor-mcp
+category: tools
+description:
+  en: >-
+    Connect a local Autodesk Inventor 2025 to DSH agents: 66 MCP tools for
+    parametric part modeling, sketch constraints and user parameters,
+    circular and rectangular patterns, drawings with section views, and
+    STEP/IGES/DXF export. Requires Windows, Inventor 2025, Python 3.12+ and
+    pywin32, and uses the inventor-mcp-server package from PyPI.
+  zh: >-
+    把本机 Autodesk Inventor 2025 接进 DSH：66 个 MCP 工具覆盖参数化零件建模、
+    草图全约束与用户参数、圆形/矩形阵列、带剖视的工程图，以及 STEP/IGES/DXF 导出。
+    需要 Windows、Inventor 2025、Python 3.12+ 与 pywin32，运行时使用 PyPI 上的
+    inventor-mcp-server。
+icon: https://raw.githubusercontent.com/StarvastPact/inventor-mcp/main/icon.svg
