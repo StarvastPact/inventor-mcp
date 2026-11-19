@@ -1,0 +1,49 @@
+{
+  "name": "dsh-inventor-mcp",
+  "version": "1.2.0",
+  "type": "module",
+  "description": "Connect Autodesk Inventor to DSH agents through inventor-mcp-server: 66 MCP tools for parametric part modeling, sketch constraints, drawings and STEP export.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "mcp",
+    "autodesk-inventor",
+    "inventor",
+    "cad",
+    "parametric-modeling",
+    "cae"
+  ],
+  "license": "MIT",
+  "author": "StarvastPact",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StarvastPact/inventor-mcp.git"
+  },
+  "homepage": "https://github.com/StarvastPact/inventor-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/StarvastPact/inventor-mcp/issues"
+  },
+  "engines": {
+    "dsh": ">=0.2.0"
+  },
+  "exports": {
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "run_inventor_mcp.py",
+    "install.ps1",
+    "locale/*.json",
+    "docs",
+    "icon.svg",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
