@@ -67,6 +67,9 @@ if (-not (Test-Path $patch)) {
 }
 $yaml = Get-Content -Path $patch -Raw -Encoding UTF8
 $newYaml = [regex]::Replace($yaml, "(?m)^\s*command:\s*'python'\s*$", "        command: '$($py.Exe.Replace("'", "''"))'")
+# 同时把启动器脚本的绝对路径重写成本仓库位置（args 里的 run_inventor_mcp.py）
+$launcher = Join-Path $here "run_inventor_mcp.py"
+$newYaml = [regex]::Replace($newYaml, "(?m)^(\s*)-\s*'.*run_inventor_mcp\.py'\s*$", "`$1- '$($launcher.Replace("'", "''"))'")
 if ($newYaml -ne $yaml) {
     Set-Content -Path $patch -Value $newYaml -Encoding UTF8 -NoNewline
     Write-Host "[+] cordis.patch.yml: command -> $($py.Exe)" -ForegroundColor Green
