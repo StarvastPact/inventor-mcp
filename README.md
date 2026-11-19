@@ -38,7 +38,7 @@
 # 1. 装依赖
 pip install --upgrade inventor-mcp-server pywin32
 
-# 2. 在本仓库目录下运行安装脚本（会把 cordis.patch.yml 里的 python 改成绝对路径）
+# 2. 在本仓库目录下运行安装脚本（必须：它把 python 写成绝对路径，并把启动器路径写进 args）
 .\install.ps1
 
 # 3. 注册到 DSH（在 DSH 会话里让 agent 执行，或手动运行）
@@ -71,25 +71,17 @@ save_document(path="D:/parts/flange.ipt")
 本仓库**不包含**建模引擎的源码，它是一个 DSH 侧的接入层：
 
 - 建模工具本体：[`inventor-mcp-server`](https://pypi.org/project/inventor-mcp-server/)（MIT，作者 inventor-mcp contributors，上游 [cenitu/inventor-mcp-server](https://github.com/cenitu/inventor-mcp-server)）
-- 本仓库负责：`cordis.patch.yml`（DSH 侧 MCP client 配置）、`package.json`（bundle 声明）、`run_inventor_mcp.py`（可选的离线自包含启动器）、`install.ps1`、文档
+- 本仓库负责：`cordis.patch.yml`（DSH 侧 MCP client 配置）、`package.json`（bundle 声明）、`run_inventor_mcp.py`（启动器：自动选择 pip 包或离线运行时）、`install.ps1`、文档
 
-## 两种启动方式
+## 启动器如何选择后端
 
-**A. 标准方式（推荐）** — 直接用 pip 装好的模块：
+`install.ps1` 会把 `cordis.patch.yml` 的 args 指向 `run_inventor_mcp.py`。这个启动器启动时按顺序尝试：
 
-```yaml
-command: 'python'
-args: ['-m', 'inventor_mcp_server.server']
-```
+1. **pip 包**：`import inventor_mcp_server` 成功 → 直接运行（推荐路径）
+2. **离线运行时**：失败则扫 `runtime/ext/*/inventor_mcp_server/server.py` → 用 `runpy` 运行
+3. 两者都没有 → 打印清晰错误并退出
 
-**B. 自包含方式（离线/免 pip）** — 依赖解压在 `runtime/pylibs`、源码在 `runtime/ext`：
-
-```yaml
-command: 'python'
-args: ['-u', '<本仓库>/run_inventor_mcp.py']
-```
-
-方式 B 适合没有外网或 pip 受限的机器，本仓库不提交 `runtime/`（见 `.gitignore`），需要自己准备。
+所以 `pip install inventor-mcp-server` 是唯一必须的依赖步骤；`runtime/` 只是给没有外网或 pip 受限的机器准备的备选（本仓库不提交，见 `.gitignore`）。
 
 ## 验证
 
