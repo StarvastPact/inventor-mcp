@@ -1,0 +1,28 @@
+# 运行时依赖与生成物：不进 git
+runtime/pylibs/
+runtime/ext/
+runtime/logs/
+runtime/**/*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 打包/下载缓存
+*.zip
+*.tar.gz
+*.whl
+vendor/
+wheels/
+
+# DSH 本地状态
+.dsh/
+*.local.yml
+cordis.patch.local.yml
+
+# 系统
+Thumbs.db
+.DS_Store
