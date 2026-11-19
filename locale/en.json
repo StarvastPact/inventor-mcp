@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Inventor MCP bridge",
+    "description": "Connects Autodesk Inventor through inventor-mcp-server so the agent can model parts, sheet metal and assemblies.",
+    "detail": "docs/DETAIL.md"
+  }
+}
