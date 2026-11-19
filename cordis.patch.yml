@@ -1,0 +1,24 @@
+- insert:
+    - id: inventor-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: inventor
+        transport: stdio
+        # 默认：用已 pip 安装的 inventor-mcp-server（Python 3.12+，Windows）
+        #   pip install inventor-mcp-server pywin32
+        # install.ps1 会把下面的 python 换成检测到的绝对路径。
+        # 如果 Python 已在 PATH，也可以保留 'python'。
+        command: 'python'
+        args:
+          - '-m'
+          - 'inventor_mcp_server.server'
+        env:
+          PYTHONIOENCODING: 'utf-8'
+          PYTHONUNBUFFERED: '1'
+          INVENTOR_MCP_PRELOAD: ''
+        failOnStartupError: true
+
+        # --- 离线/免 pip 的自包含方式（把上面 args 换成本地启动器）---
+        # args:
+        #   - '-u'
+        #   - '__INSTALL_DIR__/run_inventor_mcp.py'
